@@ -428,7 +428,8 @@
   /* ---------- tortuguitas ---------- */
   function turtleSVG(shell, skin){
     var eyes = '#3a2410';
-    return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 44">'
+    return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 46 46">'
+      +'<g transform="translate(-7 1)">'
       /* patitas y cola */
       +'<circle cx="17" cy="21" r="5.5" fill="'+skin+'"/><circle cx="43" cy="21" r="5.5" fill="'+skin+'"/>'
       +'<circle cx="17" cy="31" r="5.5" fill="'+skin+'"/><circle cx="43" cy="31" r="5.5" fill="'+skin+'"/>'
@@ -443,6 +444,7 @@
       +'<circle cx="22" cy="23" r="2.2" fill="#6f9a48" opacity=".35"/>'
       +'<circle cx="38" cy="23" r="2.2" fill="#6f9a48" opacity=".35"/>'
       +'<circle cx="30" cy="18.5" r="2" fill="#6f9a48" opacity=".3"/>'
+      +'</g>'
       +'</svg>';
   }
   function spawnTurtle(x, y){
