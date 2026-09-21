@@ -456,7 +456,7 @@
     var green = Math.random() < .6 ? '#95c96b' : '#f1c97c';
     var skin = Math.random() < .5 ? '#cde9a8' : '#ffe9ad';
     t.innerHTML = turtleSVG(green, skin);
-    var s = 34 + Math.random()*20;
+    var s = 46 + Math.random()*22;
     t.style.width = s+'px';
     t.style.left = x+'px';
     t.style.top = (y || 0)+'px';
@@ -477,7 +477,7 @@
     h.innerHTML = '<div class="heart small"></div>';
     h.addEventListener('animationend', function(e){ e.target.remove(); });
     document.body.appendChild(h);
-  }, 1800);
+  }, 850);
 
   /* ---------- destellos ---------- */
   for(var s=0;s<16;s++){
