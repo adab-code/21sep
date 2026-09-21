@@ -39,6 +39,7 @@
     animation-name:sway;animation-timing-function:ease-in-out;animation-iteration-count:infinite;
     transform-origin:50% 100%;
     z-index:4;
+    filter:drop-shadow(0 14px 22px rgba(120,90,40,.22));
     transition:opacity .9s ease .35s;
   }
   body.opened .bouquet{z-index:1}
@@ -49,6 +50,7 @@
     animation-name:sway;animation-timing-function:ease-in-out;animation-iteration-count:infinite;
     transform-origin:50% 100%;
     z-index:8;
+    filter:drop-shadow(0 8px 12px rgba(150,80,20,.15));
   }
   .baseflower svg{display:block;width:100%;height:auto}
   @keyframes sway{
@@ -254,7 +256,7 @@
       h += '<ellipse cx="'+px.toFixed(1)+'" cy="'+py.toFixed(1)+'"'
         +' rx="'+(R*0.30).toFixed(1)+'" ry="'+(R*0.155).toFixed(1)+'"'
         +' transform="rotate('+(a*R2D).toFixed(1)+' '+px.toFixed(1)+' '+py.toFixed(1)+')"'
-        +' fill="'+col+'"/>';
+        +' fill="'+col+'" stroke="#8a5a1d" stroke-opacity=".18" stroke-width="0.8"/>';
     }
     for(i=0;i<nIn;i++){
       a = (i+0.5)*P2/nIn;
@@ -263,7 +265,7 @@
       h += '<ellipse cx="'+px.toFixed(1)+'" cy="'+py.toFixed(1)+'"'
         +' rx="'+(R*0.27).toFixed(1)+'" ry="'+(R*0.14).toFixed(1)+'"'
         +' transform="rotate('+(a*R2D).toFixed(1)+' '+px.toFixed(1)+' '+py.toFixed(1)+')"'
-        +' fill="'+inner+'"/>';
+        +' fill="'+inner+'" stroke="#8a5a1d" stroke-opacity=".14" stroke-width="0.7"/>';
     }
     h += '<circle cx="'+cx.toFixed(1)+'" cy="'+cy.toFixed(1)+'" r="'+(R*0.33).toFixed(1)+'"'
       +' fill="'+center+'" stroke="rgba(70,40,10,.25)" stroke-width="1"/>';
@@ -293,14 +295,18 @@
       {x:222,y:308,R:40, col:'#ffe27a', in:'#fff3c4', c:'#c98a2e'}
     ];
 
-    var stems = '', k;
+    var stems = '', stemsHl = '', k;
     for(k=0;k<heads.length;k++){
       stems += '<line x1="'+heads[k].x+'" y1="'+(heads[k].y+16)+'" x2="'+bx+'" y2="'+by
         +'" stroke="url(#gs'+id+')" stroke-width="3.2" stroke-linecap="round"/>';
+      stemsHl += '<line x1="'+heads[k].x+'" y1="'+(heads[k].y+16)+'" x2="'+bx+'" y2="'+by
+        +'" stroke="#b9d795" stroke-width="1.1" stroke-linecap="round" opacity=".55"/>';
     }
     for(k=0;k<front.length;k++){
       stems += '<line x1="'+front[k].x+'" y1="'+(front[k].y+16)+'" x2="'+bx+'" y2="'+by
         +'" stroke="url(#gs'+id+')" stroke-width="3.2" stroke-linecap="round"/>';
+      stemsHl += '<line x1="'+front[k].x+'" y1="'+(front[k].y+16)+'" x2="'+bx+'" y2="'+by
+        +'" stroke="#b9d795" stroke-width="1.1" stroke-linecap="round" opacity=".55"/>';
     }
 
     /* ---- hojas ---- */
@@ -357,6 +363,8 @@
       +'<stop offset="0" stop-color="#9ccb6f"/><stop offset="1" stop-color="#6f9a48"/></linearGradient>'
       +'</defs>'
       +stems
+      +stemsHl
+      +'<ellipse cx="220" cy="508" rx="95" ry="13" fill="rgba(110,140,70,.20)"/>'
       +leafHtml
       +sprigs
       +back
