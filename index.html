@@ -212,10 +212,17 @@
   }
 
   @media (max-width:560px){
-    .letter{padding:26px 18px 24px;max-height:calc(var(--vh) - 20px);overflow:auto}
-    .dedic{line-height:1.82}
-    .heartRow::before,.heartRow::after{width:40px}
-    .wrap{top:47%}
+    .wrap{top:45%}
+    .letter{padding:14px 12px 16px;max-height:calc(var(--vh) - 14px);overflow:auto}
+    .letterFlower{width:66px;height:34px;margin-bottom:2px}
+    .letterFlower svg{height:34px}
+    h1{font-size:25px;margin-bottom:4px}
+    .subtitle{font-size:10.5px;margin-bottom:12px;letter-spacing:1.5px}
+    .heartRow{margin-bottom:12px;gap:10px}
+    .heartRow::before,.heartRow::after{width:30px}
+    .divider{margin:12px auto}
+    .dedic{font-size:13.5px;line-height:1.68;margin-bottom:4px}
+    .firma{font-size:18px}
   }
   @media (prefers-reduced-motion:reduce){
     .bouquet,.envTap,.envelope,.letter,.cloud,.sparkle{animation:none !important;transition:none !important}
@@ -417,6 +424,7 @@
   var bq = document.createElement('div');
   bq.className = 'bouquet';
   var bqW = Math.min(window.innerWidth >= 760 ? 620 : 760, window.innerWidth);
+  if(window.innerWidth < 600) bqW = Math.round(bqW * 0.7);
   bq.style.width = bqW + 'px';
   bq.style.left = 'calc(50% - ' + (bqW/2) + 'px)';
   bq.style.bottom = '10px';
