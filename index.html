@@ -201,7 +201,7 @@
   <div class="wrap" id="wrap">
     <div class="envelope" id="envelope">
       <div class="heart" style="--hs:26px"></div>
-      <div class="envTitle">Una carta para ti</div>
+      <div class="envTitle">Una carta para ti<br>mi gris</div>
       <div class="envTap">toca para abrirla</div>
     </div>
 
@@ -370,7 +370,7 @@
   var bqW = Math.min(window.innerWidth >= 760 ? 620 : 760, window.innerWidth);
   bq.style.width = bqW + 'px';
   bq.style.left = 'calc(50% - ' + (bqW/2) + 'px)';
-  bq.style.bottom = '-40px';
+  bq.style.bottom = '10px';
   bq.style.animationDuration = '9s';
   bq.innerHTML = bouquetSVG();
   document.body.appendChild(bq);
@@ -381,7 +381,7 @@
     div.className = 'baseflower';
     div.style.width = bqW + 'px';
     div.style.left = bq.style.left;
-    div.style.bottom = '-40px';
+    div.style.bottom = '10px';
     div.style.height = (bqW * 520/440) + 'px';
     div.style.animationDuration = '9s';
     var h1 = head(148, 418, 30, '#ffc93c', '#ffd45e', '#8f5a1d', 12, 10);
