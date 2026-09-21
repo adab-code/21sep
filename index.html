@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Para ti</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -10,6 +10,10 @@
 <style>
   *{margin:0;padding:0;box-sizing:border-box}
   :root{--vh:100vh}
+  @supports (height:100dvh){
+    :root{--vh:100dvh}
+    html,body{height:100dvh}
+  }
   html,body{height:var(--vh)}
   body{
     font-family:'Quicksand',system-ui,sans-serif;
@@ -268,16 +272,18 @@
   var R2D = 180/Math.PI;
   var plantId = 0;
 
-  /* altura real visible (navegadores moviles: barra de direcciones) */
+  /* altura real visible (respaldo para navegadores sin dvh) */
   function setVh(){
     var v = window.visualViewport ? window.visualViewport.height : window.innerHeight;
     document.documentElement.style.setProperty('--vh', v + 'px');
   }
-  setVh();
-  window.addEventListener('resize', setVh);
-  window.addEventListener('orientationchange', setVh);
-  if(window.visualViewport){
-    window.visualViewport.addEventListener('resize', setVh);
+  if(!(window.CSS && CSS.supports && CSS.supports('height','100dvh'))){
+    setVh();
+    window.addEventListener('resize', setVh);
+    window.addEventListener('orientationchange', setVh);
+    if(window.visualViewport){
+      window.visualViewport.addEventListener('resize', setVh);
+    }
   }
 
   /* una flor de un ramo */
