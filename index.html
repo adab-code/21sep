@@ -335,16 +335,6 @@
       branch(352, 208, 292, 300, [0.3,0.5,0.7,0.88]) +
       branch(216, 112, 220, 230, [0.32,0.52,0.72,0.9]);
 
-    /* ---- lazo ---- */
-    var ribbon =
-      '<ellipse cx="190" cy="462" rx="30" ry="19" transform="rotate(-28 190 462)" fill="#ffb3c6" stroke="#f28fae" stroke-width="1.2"/>'+
-      '<ellipse cx="190" cy="462" rx="19" ry="12" transform="rotate(-28 190 462)" fill="#ff9fb8"/>'+
-      '<ellipse cx="250" cy="462" rx="30" ry="19" transform="rotate( 28 250 462)" fill="#ffb3c6" stroke="#f28fae" stroke-width="1.2"/>'+
-      '<ellipse cx="250" cy="462" rx="19" ry="12" transform="rotate( 28 250 462)" fill="#ff9fb8"/>'+
-      '<circle cx="220" cy="469" r="11" fill="#ff8fab" stroke="#ef6f9a" stroke-width="1.2"/>'+
-      '<path d="M 210 478 C 200 498 186 512 176 524 L 184 526 C 194 510 206 496 212 478 Z" fill="#ff9fb8"/>'+
-      '<path d="M 230 478 C 240 498 254 512 264 524 L 256 526 C 246 510 234 496 228 478 Z" fill="#ff9fb8"/>';
-
     /* ---- conjunto ---- */
     var back = '';
     for(k=0;k<heads.length;k++){
@@ -368,7 +358,6 @@
       +sprigs
       +back
       +frnt
-      +ribbon
       +'</svg>';
   }
 
@@ -406,7 +395,7 @@
   })();
 
   /* ---------- petalos cayendo ---------- */
-  var paleta = ['#ffd45e','#ffc93c','#ffe8a3','#ffd8a8','#ffb3c6','#fff8e7','#ffdf70'];
+  var paleta = ['#ffd45e','#ffc93c','#ffe8a3','#ffd8a8','#fff0b3','#fff8e7','#ffdf70'];
   function spawn(tipox, tipoy, count, durMin, durMax, driftMax){
     for(var i=0;i<count;i++){
       var w = 13 + Math.random()*12;
