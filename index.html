@@ -335,6 +335,20 @@
       branch(352, 208, 292, 300, [0.3,0.5,0.7,0.88]) +
       branch(216, 112, 220, 230, [0.32,0.52,0.72,0.9]);
 
+    /* ---- flor rosa (moño) en la base ---- */
+    var ribbon =
+      /* colas */
+      '<path d="M 214 480 C 205 500 192 514 182 528" stroke="#f28fae" stroke-width="5" fill="none" stroke-linecap="round"/>'+
+      '<path d="M 226 480 C 235 500 248 514 258 528" stroke="#f28fae" stroke-width="5" fill="none" stroke-linecap="round"/>'+
+      /* bucles */
+      '<circle cx="204" cy="467" r="15" fill="#ffb3c6" stroke="#f28fae" stroke-width="1.4"/>'+
+      '<circle cx="236" cy="467" r="15" fill="#ffb3c6" stroke="#f28fae" stroke-width="1.4"/>'+
+      '<circle cx="201" cy="464" r="7.5" fill="#ff9fb8"/>'+
+      '<circle cx="239" cy="464" r="7.5" fill="#ff9fb8"/>'+
+      /* nudo */
+      '<circle cx="220" cy="470" r="10.5" fill="#ff8fab" stroke="#ef6f9a" stroke-width="1.4"/>'+
+      '<circle cx="217.5" cy="467.5" r="3" fill="#ffc2d1"/>';
+
     /* ---- conjunto ---- */
     var back = '';
     for(k=0;k<heads.length;k++){
@@ -358,6 +372,7 @@
       +sprigs
       +back
       +frnt
+      +ribbon
       +'</svg>';
   }
 
