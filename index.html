@@ -187,6 +187,25 @@
   }
   @keyframes twinkle{0%,100%{opacity:.18;transform:scale(.55)}50%{opacity:.95;transform:scale(1.12)}}
 
+  /* ---------- musica ---------- */
+  .musicBtn{
+    position:fixed;right:18px;bottom:24px;z-index:9;
+    width:54px;height:54px;border-radius:50%;
+    border:none;cursor:pointer;
+    display:none;align-items:center;justify-content:center;
+    background:linear-gradient(160deg,#fff7e3,#ffe3bd);
+    color:#e8912d;font-size:22px;font-family:'Quicksand',sans-serif;
+    box-shadow:0 8px 20px rgba(220,160,70,.4);
+    transition:transform .2s;
+  }
+  .musicBtn:hover{transform:scale(1.08)}
+  .musicBtn.playing{background:linear-gradient(160deg,#ffe3bd,#ffd9a0);
+    animation:pulse 1.6s ease-in-out infinite}
+  @keyframes pulse{
+    0%,100%{box-shadow:0 8px 20px rgba(220,160,70,.4)}
+    50%{box-shadow:0 8px 28px rgba(220,160,70,.8)}
+  }
+
   @media (max-width:560px){
     .letter{padding:26px 18px 24px;max-height:calc(100vh - 20px);overflow:auto}
     .dedic{line-height:1.82}
@@ -238,6 +257,9 @@
       </p>
     </div>
   </div>
+
+  <audio id="musica" loop preload="auto" src="cancion.mp3"></audio>
+  <button class="musicBtn" id="musicBtn" type="button" aria-label="musica">♪</button>
 
 <script>
 (function(){
@@ -520,6 +542,34 @@
     if(!wrap.classList.contains('open')){
       wrap.classList.add('open');
       setTimeout(function(){ document.body.classList.add('opened'); }, 400);
+      try{
+        musica.play().then(function(){
+          musicBtn.classList.add('playing');
+          musicBtn.textContent = 'II';
+        }).catch(function(){});
+      }catch(e){}
+    }
+  });
+
+  /* ---------- musica ---------- */
+  var musica = document.getElementById('musica');
+  var musicBtn = document.getElementById('musicBtn');
+  musica.addEventListener('error', function(){
+    musicBtn.style.display = 'none';
+  });
+  musica.addEventListener('canplay', function(){
+    musicBtn.style.display = 'flex';
+  });
+  musicBtn.addEventListener('click', function(e){
+    e.stopPropagation();
+    if(musica.paused){
+      musica.play().catch(function(){});
+      musicBtn.classList.add('playing');
+      musicBtn.textContent = 'II';
+    }else{
+      musica.pause();
+      musicBtn.classList.remove('playing');
+      musicBtn.textContent = '♪';
     }
   });
 })();
