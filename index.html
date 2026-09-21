@@ -43,6 +43,14 @@
   }
   body.opened .bouquet{z-index:1}
   .bouquet svg{display:block;width:100%;height:auto}
+  .baseflower{
+    position:fixed;
+    pointer-events:none;
+    animation-name:sway;animation-timing-function:ease-in-out;animation-iteration-count:infinite;
+    transform-origin:50% 100%;
+    z-index:8;
+  }
+  .baseflower svg{display:block;width:100%;height:auto}
   @keyframes sway{
     0%,100%{transform:rotate(1.4deg)}
     50%{transform:rotate(-1.8deg)}
@@ -284,10 +292,6 @@
       {x:300,y:298,R:44, col:'#ffd45e', in:'#ffeaa0', c:'#8f5a1d'},
       {x:222,y:308,R:40, col:'#ffe27a', in:'#fff3c4', c:'#c98a2e'}
     ];
-    var base = [
-      {x:148,y:418,R:30, col:'#ffc93c', in:'#ffd45e', c:'#8f5a1d'},
-      {x:298,y:412,R:34, col:'#f9c52f', in:'#ffeaa0', c:'#8f5a1d'}
-    ];
 
     var stems = '', k;
     for(k=0;k<heads.length;k++){
@@ -348,10 +352,6 @@
     for(k=0;k<front.length;k++){
       frnt += head(front[k].x, front[k].y, front[k].R, front[k].col, front[k].in, front[k].c, 14, 12);
     }
-    var bs = '';
-    for(k=0;k<base.length;k++){
-      bs += head(base[k].x, base[k].y, base[k].R, base[k].col, base[k].in, base[k].c, 12, 10);
-    }
 
     return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 520"'
       +' width="440" height="520" aria-hidden="true">'
@@ -366,7 +366,6 @@
       +sprigs
       +back
       +frnt
-      +bs
       +ribbon
       +'</svg>';
   }
@@ -381,6 +380,22 @@
   bq.innerHTML = bouquetSVG();
   document.body.appendChild(bq);
 
+  /* dos flores de la base, siempre al frente */
+  (function baseFlowers(){
+    var div = document.createElement('div');
+    div.className = 'baseflower';
+    div.style.width = bqW + 'px';
+    div.style.left = bq.style.left;
+    div.style.bottom = '-40px';
+    div.style.height = (bqW * 520/440) + 'px';
+    div.style.animationDuration = '9s';
+    var h1 = head(148, 418, 30, '#ffc93c', '#ffd45e', '#8f5a1d', 12, 10);
+    var h2 = head(298, 412, 34, '#f9c52f', '#ffeaa0', '#8f5a1d', 12, 10);
+    div.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 520"'
+      +' width="440" height="520" aria-hidden="true">'+h1+h2+'</svg>';
+    document.body.appendChild(div);
+  })();
+
   (function miniFlower(){
     var box = document.getElementById('letterFlower');
     var h = head(60, 46, 42, '#ffd45e', '#ffeaa0', '#8f5a1d', 14, 12);
@@ -392,7 +407,7 @@
   var paleta = ['#ffd45e','#ffc93c','#ffe8a3','#ffd8a8','#ffb3c6','#fff8e7','#ffdf70'];
   function spawn(tipox, tipoy, count, durMin, durMax, driftMax){
     for(var i=0;i<count;i++){
-      var w = 16 + Math.random()*18;
+      var w = 13 + Math.random()*12;
       var p = document.createElement('div');
       p.className = 'falling';
       p.style.width = w+'px';
@@ -407,7 +422,7 @@
       document.body.appendChild(p);
     }
   }
-  setInterval(function(){ spawn(undefined, undefined, 1, 6, 12, 180); }, 650);
+  setInterval(function(){ spawn(undefined, undefined, 1, 7, 12, 160); }, 2400);
 
   document.addEventListener('click', function(ev){
     spawnTurtle(ev.clientX, ev.clientY);
